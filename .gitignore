@@ -1,0 +1,7 @@
+# Laravel
+dz-takaful/vendor/
+dz-takaful/.env
+
+# Angular
+dz-takaful-frontend/node_modules/
+dz-takaful-frontend/dist/
