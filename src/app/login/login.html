@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">التسجيل للدخول</h2>
+
+  <form (ngSubmit)="login()">
+    <div class="mb-3">
+      <label class="form-label">الإيمايل</label>
+      <input type="email" [(ngModel)]="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">كلمة السر</label>
+      <input type="password" [(ngModel)]="password" name="password" class="form-control" required>
+    </div>
+
+    <div *ngIf="showAlert" class="alert alert-{{ alertType }} alert-dismissible fade show text-center mt-3" role="alert">
+  {{ alertMessage }}
+  <button class="btn-close" (click)="showAlert = false" aria-label="إغلاق"></button>
+</div>
+
+
+    <button type="submit" class="btn btn-primary w-100">تسجيل</button>
+  </form>
+</div>

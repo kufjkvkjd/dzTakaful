@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4"> إنشاء البروفايل</h2>
+
+  <form (ngSubmit)="submit()" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">الدور:</label>
+      <select class="form-select" name="role" [(ngModel)]="role" (change)="onRoleChange($event)" required>
+        <option value="">-- اختر --</option>
+        <option value="individual">أفراد</option>
+        <option value="professional">مهنيين</option>
+        <option value="entreprise">مؤسسات</option>
+      </select>
+    </div>
+
+    <div *ngIf="role">
+      <div class="mb-3">
+        <label class="form-label">العنوان:</label>
+        <input type="text" name="address" [(ngModel)]="address" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">رقم الهاتف:</label>
+        <input type="text" name="phone" [(ngModel)]="phone" class="form-control" required>
+      </div>
+    </div>
+
+    <div *ngIf="role === 'individual' || role === 'professional'">
+      <div class="mb-3">
+        <label class="form-label">رقم البطاقة الوطنية:</label>
+        <input type="text" name="national_id_number" [(ngModel)]="national_id_number" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">تحميل صورة البطاقة الوطنية:</label>
+        <input type="file" (change)="onCard($event)" class="form-control">
+      </div>
+    </div>
+
+    <div *ngIf="role === 'individual'">
+      <div class="mb-3">
+        <label class="form-label">رقم الحساب البريدي أو البنكي:</label>
+        <input type="text" name="rib" [(ngModel)]="rib" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">تحميل الملف الطبي:</label>
+        <input type="file" (change)="onMedicalReport($event)" class="form-control">
+      </div>
+    </div>
+
+    <div *ngIf="role === 'professional' || role === 'entreprise'">
+      <div class="mb-3">
+        <label class="form-label">اسم المؤسسة:</label>
+        <input type="text" name="establishment_name" [(ngModel)]="establishment_name" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">رقم السجل التجاري:</label>
+        <input type="text" name="nrc" [(ngModel)]="nrc" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">تحميل نسخة من السجل التجاري:</label>
+        <input type="file" (change)="onRegister($event)" class="form-control">
+      </div>
+    </div>
+
+    <div *ngIf="role === 'entreprise'">
+      <div class="mb-3">
+        <label class="form-label">تحميل وثائق إثبات النشاط (فواتير، عقود...):</label>
+        <input type="file" (change)="onActivityProofDocuments($event)" class="form-control">
+      </div>
+    </div>
+
+    <div *ngIf="showAlert" class="alert alert-{{ alertType }} alert-dismissible fade show text-center mt-3" role="alert">
+  {{ alertMessage }}
+  <button class="btn-close" (click)="showAlert = false" aria-label="إغلاق"></button>
+</div>
+
+
+    <button type="submit" class="btn btn-primary w-100">إنشاء البروفايل</button>
+  </form>
+</div>
+
+

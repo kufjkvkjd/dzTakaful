@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc/server",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "types": ["node"]
+  },
+  "files": ["src/main.server.ts"]
+}

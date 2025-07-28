@@ -10,7 +10,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/services/auth.service.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

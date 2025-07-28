@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">عرض البروفايل</h2>
+
+  <button *ngIf="!formVisible" type="button" class="btn btn-secondary w-100" (click)="loadProfile()">📥 عرض البروفايل</button>
+
+  <div *ngIf="formVisible">
+    <div class="mb-3">
+
+      <label class="form-label">الدور:</label>
+      <select name="role" [(ngModel)]="role" class="form-select" (change)="onRoleChange($event)" disabled>
+        <option value="">-- اختر --</option>
+        <option value="admin">أدمن</option>
+        <option value="individual">أفراد</option>
+        <option value="professional">مهنيين</option>
+        <option value="entreprise">مؤسسات</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">العنوان:</label>
+      <input type="text" name="address" [(ngModel)]="address" class="form-control" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">الهاتف:</label>
+      <input type="text" name="phone" [(ngModel)]="phone" class="form-control" readonly>
+    </div>
+
+    <div *ngIf="role === 'individual' || role === 'professional'">
+      <div class="mb-3">
+        <label class="form-label">رقم البطاقة الوطنية:</label>
+        <input type="text" name="national_id_number" [(ngModel)]="national_id_number" class="form-control" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">صورة البطاقة الوطنية:</label><br>
+        <button type="button" class="btn btn-outline-secondary mt-2" *ngIf="national_card_image_url" (click)="downloadFile(national_card_image_url)">تحميل الوثيقة</button>
+      </div>
+    </div>
+
+    <div *ngIf="role === 'individual'">
+      <div class="mb-3">
+        <label class="form-label">RIB:</label>
+        <input type="text" name="rib" [(ngModel)]="rib" class="form-control" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">الملف الطبي:</label><br>
+        <button type="button" class="btn btn-outline-secondary mt-2" *ngIf="medical_report_url" (click)="downloadFile(medical_report_url)">تحميل الوثيقة</button>
+      </div>
+    </div>
+
+    <div *ngIf="role === 'professional' || role === 'entreprise '">
+      <div class="mb-3">
+        <label class="form-label">اسم المؤسسة:</label>
+        <input type="text" name="establishment_name" [(ngModel)]="establishment_name" class="form-control" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">رقم السجل التجاري:</label>
+        <input type="text" name="nrc" [(ngModel)]="nrc" class="form-control" readonly>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">نسخة السجل التجاري:</label><br>
+        <button type="button" class="btn btn-outline-secondary mt-2" *ngIf="commercial_register_copy_url" (click)="downloadFile(commercial_register_copy_url)">تحميل الوثيقة</button>
+      </div>
+    </div>
+
+    <div *ngIf="role === 'entreprise'">
+      <div class="mb-3">
+        <label class="form-label">وثائق إثبات النشاط:</label><br>
+        <button type="button" class="btn btn-outline-secondary mt-2" *ngIf="activity_proof_documents_url" (click)="downloadFile(activity_proof_documents_url)">تحميل الوثيقة</button>
+      </div>
+    </div>
+  </div>
+
+      <div *ngIf="role === 'admin'" class="text-center mt-4">
+      <a routerLink="/profiles" class="btn btn-success text-white w-50 mx-auto py-3">📋 عرض كل البروفايلات</a>
+    </div>
+
+
+</div>

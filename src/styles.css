@@ -1,1 +1,202 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Arabic:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Playpen Sans Arabic', cursive;
+  direction: rtl;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/jt1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+  z-index: -1;
+
+  animation: infiniteZoom 12s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes infiniteZoom {
+  0% {
+    transform: scale(0.3);
+  }
+  25% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(0.3);
+}
+}
+
+.header-image {
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  padding: 0;
+}
+
+.header-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  animation: bgZoomMove 10s ease-in-out infinite;
+}
+
+@keyframes bgZoomMove {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.25;
+  }
+  25% {
+    transform: scale(1.05) translate(2%, -2%);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) translate(-2%, 2%);
+    opacity: 0.25;
+  }
+  75% {
+    transform: scale(1.05) translate(1%, -1%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.25;
+  }
+}
+
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes livelyEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateX(10deg);
+    filter: brightness(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) rotateX(0deg);
+    filter: brightness(1.1);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+
+@keyframes containerBreath {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+  50% {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  }
+}
+
+@keyframes softFlash {
+  0%, 100% {
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes vividPulse {
+  0%, 100% {
+    transform: scale(1);
+    background-color: #a1a1a1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: rgb(142, 150, 145);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+
+.container {
+  max-width: 1000px;
+  background-color: rgba(230, 255, 235, 0.9);
+  padding: 30px;
+  border-radius: 15px;
+  font-family: 'Playpen Sans Arabic', cursive;
+  direction: rtl;
+
+  border: 1px solid transparent;
+  animation: containerBreath 4s ease-in-out infinite;
+
+  transform: scale(1);
+}
+
+.container * {
+  animation: softFlash 3s ease-in-out infinite;
+}
+button[type="submit"],
+button[type="button"] {
+  background-color: #818181;
+  opacity: 0.95;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  animation: vividPulse 2.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.8);
+  transition: transform 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  transform: scale(1.07);
+  filter: brightness(1.1);
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2fa168;
+  text-shadow: 0 0 8px #81c79c, 0 0 12px #c8e6d4;
+  transition: all 0.4s ease-in-out;
+}
+
+h2:hover {
+  transform: scale(1.2) skewX(20deg);
+  filter: brightness(1.2) contrast(1.1);
+  text-shadow: 0 0 10px #92e0b2, 0 0 20px #c1f0da;
+}

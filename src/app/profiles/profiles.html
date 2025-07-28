@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">📋 قائمة البروفايلات</h2>
+
+  <div class="d-grid gap-2 mb-4">
+    <button type="button" class="btn btn-primary" (click)="loadProfiles()">📥 عرض كل البروفايلات</button>
+  </div>
+
+  <div *ngIf="profiles.length > 0" class="table-responsive">
+    <table class="table table-bordered table-striped align-middle text-center" style="background-color: #fff;">
+      <thead class="table-warning align-middle text-center">
+        <tr>
+          <th>👤 الدور</th>
+          <th>📍 العنوان</th>
+          <th>📞 الهاتف</th>
+          <th>🪪 رقم البطاقة الوطنية</th>
+          <th>🖼️ صورة البطاقة الوطنية</th>
+          <th>🏦 RIB</th>
+          <th>🩺 الملف الطبي</th>
+          <th>🏢 اسم المؤسسة</th>
+          <th>🏷️ رقم السجل التجاري</th>
+          <th>📄 نسخة السجل التجاري</th>
+          <th>📁 وثائق إثبات النشاط</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of profiles">
+          <td>
+            <span *ngIf="p.role === 'admin'">أدمن</span>
+            <span *ngIf="p.role === 'individual'">أفراد</span>
+            <span *ngIf="p.role === 'professional'">مهنيين</span>
+            <span *ngIf="p.role === 'entreprise'">مؤسسات</span>
+            <span *ngIf="!p.role">غير محدد</span>
+          </td>
+
+          <td>{{ p.address || 'غير متوفر' }}</td>
+          <td>{{ p.phone || 'غير متوفر' }}</td>
+          <td>{{ p.national_id_number || 'غير متوفر' }}</td>
+
+          <td>
+            <a *ngIf="p.national_card_image" class="btn btn-sm btn-outline-secondary" [href]="'http://localhost:8000/storage/' + p.national_card_image" target="_blank" download>تحميل</a>
+            <span *ngIf="!p.national_card_image">-</span>
+          </td>
+
+          <td>
+            <span *ngIf="p.role === 'individual'">{{ p.rib || 'غير متوفر' }}</span>
+            <span *ngIf="p.role !== 'individual'">-</span>
+          </td>
+
+          <td>
+            <a *ngIf="p.role === 'individual' && p.medical_report" class="btn btn-sm btn-outline-secondary" [href]="'http://localhost:8000/storage/' + p.medical_report" target="_blank" download>تحميل</a>
+            <span *ngIf="p.role === 'individual' && !p.medical_report">لا يوجد</span>
+            <span *ngIf="p.role !== 'individual'">-</span>
+          </td>
+
+          <td>
+            <span *ngIf="p.role === 'professional' || p.role === 'entreprise'">{{ p.establishment_name || 'غير متوفر' }}</span>
+            <span *ngIf="p.role !== 'professional' && p.role !== 'entreprise'">-</span>
+          </td>
+
+          <td>
+            <span *ngIf="p.role === 'professional' || p.role === 'entreprise'">{{ p.nrc|| 'غير متوفر' }}</span>
+            <span *ngIf="p.role !== 'professional' && p.role !== 'entreprise'">-</span>
+          </td>
+
+          <td>
+            <a *ngIf="p.commercial_register_copy" class="btn btn-sm btn-outline-secondary" [href]="'http://localhost:8000/storage/' + p.commercial_register_copy" target="_blank" download>تحميل</a>
+            <span *ngIf="!p.commercial_register_copy">-</span>
+          </td>
+
+          <td>
+            <a *ngIf="p.role === 'entreprise' && p.activity_proof_documents" class="btn btn-sm btn-outline-secondary" [href]="'http://localhost:8000/storage/' + p.activity_proof_documents" target="_blank" download>تحميل</a>
+            <span *ngIf="p.role === 'entreprise' && !p.activity_proof_documents">لا توجد</span>
+            <span *ngIf="p.role !== 'entreprise'">-</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
